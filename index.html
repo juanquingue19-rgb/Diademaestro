@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Carmen 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    overflow: hidden;
+}
+
+/* PÁGINAS */
+.pagina {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.activa {
+    display: flex;
+    animation: fade 1s;
+}
+
+/* FONDOS */
+.p1 { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+.p2 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.p3 { background: linear-gradient(135deg, #84fab0, #8fd3f4); }
+.p4 { background: linear-gradient(135deg, #fddb92, #d1fdff); }
+.p5 { background: black; color: white; }
+
+/* CONTENIDO */
+.contenido {
+    max-width: 500px;
+}
+
+/* IMÁGENES */
+img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 10px;
+    object-fit: cover;
+}
+
+/* BOTÓN */
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #ff4d6d;
+    color: white;
+}
+
+/* TEXTO */
+p {
+    line-height: 1.6;
+}
+
+/* ANIMACIONES */
+@keyframes fade {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+/* TE AMO */
+.teamo {
+    font-size: 45px;
+    color: red;
+}
+
+/* CORAZONES */
+.corazon {
+    position: fixed;
+    color: red;
+    animation: caer 5s linear infinite;
+}
+
+@keyframes caer {
+    0% { transform: translateY(-100px); }
+    100% { transform: translateY(100vh); }
+}
+
+/* OCULTO */
+.oculto {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PÁGINA 1 -->
+<div class="pagina p1 activa">
+    <div class="contenido">
+        <h1>Carmen 💖</h1>
+        <p>
+            Hoy quiero decirte algo muy especial…  
+            eres una mujer increíble, fuerte y llena de sueños.
+        </p>
+    </div>
+</div>
+
+<!-- PÁGINA 2 -->
+<div class="pagina p2">
+    <div class="contenido">
+        <h1>Futura Maestra 🌹</h1>
+        <p>
+            Sé que estás luchando por ser licenciada en educación básica,  
+            y sé que lo lograrás.
+        </p>
+        <p>
+            Serás una maestra que dejará huellas en cada niño 💖
+        </p>
+    </div>
+</div>
+
+<!-- PÁGINA 3 -->
+<div class="pagina p3">
+    <div class="contenido">
+        <h1>Tus momentos 💕</h1>
+        <img src="foto1.jpg">
+        <img src="foto2.jpg">
+        <p>
+            Cada momento contigo vale mucho,  
+            cada sonrisa tuya ilumina todo ✨
+        </p>
+    </div>
+</div>
+
+<!-- PÁGINA 4 -->
+<div class="pagina p4">
+    <div class="contenido">
+        <h1>Tu futuro ✨</h1>
+        <p>
+            Estoy seguro que serás una gran maestra,  
+            de esas que inspiran y nunca se olvidan.
+        </p>
+        <button onclick="mostrarSorpresa()">Sorpresa 🎁</button>
+    </div>
+</div>
+
+<!-- PÁGINA FINAL -->
+<div class="pagina p5">
+    <div class="contenido">
+        
+        <!-- CONTENIDO OCULTO -->
+        <div id="sorpresa" class="oculto">
+            <img src="foto3.jpg">
+            <div class="teamo">TE AMO MUCHO 💖</div>
+            <p>Mi niña hermosa 💕</p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+let paginas = document.querySelectorAll(".pagina");
+let actual = 0;
+
+// CAMBIO AUTOMÁTICO (menos la última)
+let intervalo = setInterval(() => {
+    paginas[actual].classList.remove("activa");
+    actual++;
+
+    if(actual >= paginas.length - 1){
+        clearInterval(intervalo);
+        return;
+    }
+
+    paginas[actual].classList.add("activa");
+
+}, 6000);
+
+// MOSTRAR SORPRESA
+function mostrarSorpresa(){
+    paginas[actual].classList.remove("activa");
+    actual = paginas.length - 1;
+    paginas[actual].classList.add("activa");
+
+    document.getElementById("sorpresa").classList.remove("oculto");
+}
+
+/* CORAZONES */
+setInterval(()=>{
+    let corazon = document.createElement("div");
+    corazon.className = "corazon";
+    corazon.innerHTML = "❤️";
+    corazon.style.left = Math.random()*100+"vw";
+    document.body.appendChild(corazon);
+
+    setTimeout(()=>corazon.remove(),5000);
+},500);
+</script>
+
+</body>
+</html>
